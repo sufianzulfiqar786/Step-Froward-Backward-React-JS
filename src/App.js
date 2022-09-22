@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import AllSteps from './Pages/AllSteps';
+import Extra from './Pages/Extra'
 
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     
 
     <AllSteps/>
+    {/* <Extra/> */}
 
     </>
   );

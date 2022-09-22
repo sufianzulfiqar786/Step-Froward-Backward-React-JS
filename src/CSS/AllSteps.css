@@ -1,0 +1,157 @@
+body {
+  /* overflow: hidden;  */
+  /* Hide Scroll Bar */
+}
+
+.progressStep1 {
+    background: rgb(60, 121, 30);
+    justify-content: flex-start;
+    border-radius: 100px;
+    align-items: center;
+    position: relative;
+    padding: 0 5px;
+    display: flex;
+    height: 20px;
+    width: 100%;
+  }
+  
+  .progressStep1 div {
+    animation: Step1 1.2s ease-in-out normal forwards;
+    box-shadow: 0 10px 40px -10px black;
+    border-radius: 100px;
+    background: #6C3;
+    height: 10px;
+    width: 0;
+  }
+  
+  @keyframes Step1 {
+    0% { width: 0; }
+    100% { width: 2%; }
+  }
+
+  .progressStep2 {
+    background: rgb(60, 121, 30);
+    justify-content: flex-start;
+    border-radius: 100px;
+    align-items: center;
+    position: relative;
+    padding: 0 5px;
+    display: flex;
+    height: 20px;
+    width: 100%;
+  }
+  
+  .progressStep2 div {
+    animation: Step2 1.2s ease-in-out normal forwards;
+    box-shadow: 0 10px 40px -10px black;
+    border-radius: 100px;
+    background: #6C3;
+    height: 10px;
+    width: 0;
+  }
+  
+  @keyframes Step2 {
+    0% { width: 0; }
+    100% { width: 50%; }
+  }
+
+
+  .progressStep3 {
+    background: rgb(60, 121, 30);
+    justify-content: flex-start;
+    border-radius: 100px;
+    align-items: center;
+    position: relative;
+    padding: 0 5px;
+    display: flex;
+    height: 20px;
+    width: 100%;
+  }
+  
+  .progressStep3 div {
+    animation: Step3 1.2s ease-in-out normal forwards;
+    box-shadow: 0 10px 40px -10px black;
+    border-radius: 100px;
+    background: #6C3;
+    height: 10px;
+    width: 0;
+  }
+  
+  @keyframes Step3 {
+    0% { width: 40%; }
+    100% { width: 100%; }
+  }
+
+.errorMessage{
+  color: red;
+}
+
+.iconFontRow{
+  font-size: 25px;
+}
+
+/* Respomsive */
+
+.fullBody{
+    /* height: 100vh;
+    width: 100wh;
+    background-color: rgba(190, 243, 243, 0.295);
+    display: flex;
+    align-items: center;
+    justify-content: center; */
+    margin-top: 100px;
+}
+
+.rowinrow1st{
+    background-color: #F60 ;    
+}
+
+.rowinrow1stcolumn1st img{
+    width: 200px;
+    height: 200px;
+    margin-left: 80px;
+}
+
+.rowinrow1stcolumn1st h2{
+    
+    margin-left: 96px;
+}
+
+.nextButton {
+  height: 75px;
+  width: 210px;
+  color: #fff;
+  display: block;
+  font-size: 24px;
+  font-weight: 500;
+  border-radius: 5px;
+  line-height: 75px;
+  text-align: center;
+  background-color: #6b59d3;
+  border: 0;
+  cursor: pointer;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: right;
+}
+
+.backButton {
+  height: 75px;
+  width: 210px;
+  color: #fff;
+  display: block;
+  font-size: 24px;
+  font-weight: 500;
+  border-radius: 5px;
+  line-height: 75px;
+  text-align: center;
+  background-color: #6b59d3;
+  border: 0;
+  cursor: pointer;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

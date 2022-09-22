@@ -1,160 +1,448 @@
 import React, { useState } from "react";
-import '../CSS/AllSteps.css'
-
 import { Stepper, Step } from "react-form-stepper";
 import { MdDescription } from "react-icons/md";
 import StepWizard from "react-step-wizard";
 import { Row, Col, Button, FormGroup, Label, Input } from "reactstrap";
+import '../CSS/AllSteps.css'
+import '../CSS/AllStepsIcon.css'
+import '../CSS/Stepone.css'
+import '../CSS/Checkbox.css'
+import '../CSS/RadioMaleFemale.css'
 
 const ActionButtons = (props) => {
-    const handleBack = () => {
-      props.previousStep();
-    };
-  
-    const handleNext = () => {
-      props.nextStep();
-    };
-  
-    const handleFinish = () => {
-      props.lastStep();
-    };
-  
-    return (
-      <div>
-        <Row>
-          {props.currentStep > 1 && (
-            <Col>
-              <Button onClick={handleBack}>Back</Button>
-            </Col>
-          )}
-          <Col>
-            {props.currentStep < props.totalSteps && (
-              <Button onClick={handleNext}>Next</Button>
-            )}
-            {props.currentStep === props.totalSteps && (
-              <Button onClick={handleFinish}>Finish</Button>
-            )}
+  const handleBack = () => {
+    props.previousStep();
+  };
+
+  const handleNext = () => {
+    props.nextStep();
+  };
+
+  const handleFinish = () => {
+    props.lastStep();
+  };
+
+  return (
+    <div>
+      <Row >
+        {props.currentStep > 1 && (
+          <Col className="d-flex align-items-start  m-0 pl-1">
+            <Button className="nextButton" onClick={handleBack}>Back</Button>
           </Col>
-        </Row>
-      </div>
-    );
+        )}
+        <Col >
+          {props.currentStep < props.totalSteps && (
+            <Button className="nextButton" onClick={handleNext}>Next</Button>
+          )}
+          {props.currentStep === props.totalSteps && (
+            <Button className="nextButton" onClick={handleFinish}>Finish</Button>
+          )}
+        </Col>
+      </Row>
+    </div>
+  );
+};
+
+const One = (props) => {
+  const [info1, setInfo1] = useState({});
+  // const [info2, setInfo2] = useState({});
+  // const [error, setError] = useState("");
+  const [errorData, setErrorData] = useState("0");
+
+  const onInputChanged = (event) => {
+    const targetName = event.target.name;
+    const targetValue = event.target.value;
+
+    setInfo1((info1) => ({
+      ...info1,
+      [targetName]: targetValue
+    }));
+
+    console.log(info1)
   };
-  
-  const One = (props) => {
-    const [info1, setInfo1] = useState({});
-    const [error, setError] = useState("");
-  
-    const onInputChanged = (event) => {
-      const targetName = event.target.name;
-      const targetValue = event.target.value;
-  
-      setInfo1((info1) => ({
-        ...info1,
+
+  const validate = () => {
+
+    if (!info1.firstname) setErrorData(1);
+    else if (!info1.lastname) setErrorData(2);
+    else if (!info1.email) setErrorData(3);
+    else if (!info1.phone) setErrorData(4);
+    else if (!info1.age) setErrorData(5);
+    else if (!info1.fav_language) setErrorData(6);
+    else {
+      setErrorData('');
+      // setError("");
+      props.nextStep();
+      props.userCallback(info1);
+    }
+
+
+
+  };
+
+  return (
+    <div>
+
+
+      <div className="row">
+
+        <div className="col-lg-5 bg-danger d-flex align-items-center "><h3>Step 1/3</h3></div>
+
+        <div className="col-lg-7 bg-danger d-flex align-items-center justify-content-center">
+
+          <div class="progress progressStep1 ">
+            <div class="progress-value" ></div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <FormGroup>
+
+        <div className="container">
+
+          <div className="row mt-2 ">
+
+            <h3 className="" >Please fill with your details</h3>
+
+          </div>
+
+          <div className="row inputStep1Row1 mt-0">
+
+            <div className="col-lg-6 pl-0 pr-2">
+
+              <input className="Step1CommonInput" type="text" name="firstname" onChange={onInputChanged} placeholder="First name" />
+              {errorData == 1 ? <div className="errorMessage"> Please enter First name. </div> : ''}
+            </div>
+
+            <div className="col-lg-6  pl-2 pr-0">
+
+              <input className="Step1CommonInput" type="text" name="lastname" onChange={onInputChanged} placeholder="Last name" />
+              {errorData == 2 ? <div className="errorMessage">Please enter Last name.</div> : ''}
+            </div>
+
+          </div>
+
+          <div className="row inputStep1Row2 inputStep1Row1 mt-4">
+
+            <div className="col-lg-6 pl-0 pr-2">
+
+              <input className="Step1CommonInput" type="Email" name="email" onChange={onInputChanged} placeholder="Email" />
+              {errorData == 3 ? <div className="errorMessage">Please enter Email.</div> : ''}
+
+            </div>
+
+            <div className="col-lg-6 pl-2 pr-0">
+
+              <input className="Step1CommonInput" type="Phone" name="phone" onChange={onInputChanged} placeholder="Telephone" />
+              {errorData == 4 ? <div className="errorMessage">Please enter Telephone.</div> : ''}
+            </div>
+
+          </div>
+
+          <div className="row inputStep1Row3 inputStep1Row1 mt-4">
+
+            <div className="col-lg-6 pl-0 pr-2">
+
+              <input className="Step1CommonInput" type="number" name="age" onChange={onInputChanged} placeholder="Age" />
+              {errorData == 5 ? <div className="errorMessage">Please enter Age.</div> : ''}
+            </div>
+
+            <div className="col-lg-6 pl-2 pr-0">
+
+              <div className="row Step1Row3Common2Ratio">
+
+
+
+                <p className="ratioButton">
+                  <input type="radio" id="featured-1" name="fav_language" onChange={onInputChanged} value="Male" />
+                  <label className="ratioButtonLabel" for="featured-1"><p className="ml-3 mt-1">Male</p></label>
+
+                  <input type="radio" id="featured-2" name="fav_language" onChange={onInputChanged} value="Female" />
+                  <label className="ratioButtonLabel" for="featured-2"><p className="ml-3 mt-1">Female</p></label>
+                </p>
+
+              </div>
+              {errorData == 6 ? <div className="errorMessage">Please enter Gender.</div> : ''}
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <br />
+        {/* <span style={{ color: "red" }}>{error}</span> */}
+
+      </FormGroup>
+
+
+      <ActionButtons  {...props} nextStep={validate} />
+    </div>
+  );
+};
+
+const Two = (props) => {
+  const [info2, setInfo2] = useState({});
+  // const [error, setError] = useState("");
+  const [errorData, setErrorData] = useState("0");
+
+  const onInputChanged = (event) => {
+    const targetName = event.target.name;
+    const targetValue = event.target.value;
+
+    setInfo2((info2) => ({
+      ...info2,
+      [targetName]: targetValue
+    }));
+  };
+
+  const validate2 = () => {
+    if (!info2.address) setErrorData(1);
+    else if (!info2.city) setErrorData(2);
+    else if (!info2.postcode) setErrorData(3);
+    else if (!info2.countryData) setErrorData(4);
+    else {
+      setErrorData("");
+      props.nextStep();
+      props.userCallback(info2);
+    }
+  };
+
+  return (
+    <div>
+
+
+      <div className="row">
+
+        <div className="col-lg-5 bg-danger d-flex align-items-center "><h3>Step 2/3</h3></div>
+
+        <div className="col-lg-7 bg-danger d-flex align-items-center justify-content-center">
+
+          <div class="progress progressStep2 ">
+            <div class="progress-value" ></div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <FormGroup>
+
+
+        <div className="container">
+
+          <div className="row mt-2 ">
+
+            <h3 className="" >Please fill with additional info</h3>
+
+
+          </div>
+
+
+          <div className="row inputStep1Row1 mt-0">
+
+            <div className="col-lg-12 pl-0 pr-2">
+
+              {/* <Label>Name: </Label> */}
+              {/* <input type="text" name="name" onChange={onInputChanged} placeholder="Enter your name" /> */}
+              <input className="Step1CommonInput" type="text" name="address" onChange={onInputChanged} placeholder="Address" />
+              {errorData == 1 ? <div className="errorMessage"> Please enter Address. </div> : ''}
+
+            </div>
+
+
+
+          </div>
+
+          <div className="row inputStep1Row2 inputStep1Row1 mt-4">
+
+            <div className="col-lg-6 pl-0 pr-2">
+
+              <input className="Step1CommonInput" type="Email" name="city" onChange={onInputChanged} placeholder="City" />
+              {errorData == 2 ? <div className="errorMessage"> Please enter City. </div> : ''}
+
+            </div>
+
+            <div className="col-lg-6 pl-2 pr-0">
+
+              <input className="Step1CommonInput" type="Phone" name="postcode" onChange={onInputChanged} placeholder="Postcode" />
+              {errorData == 3 ? <div className="errorMessage"> Please enter Postcode. </div> : ''}
+
+            </div>
+
+          </div>
+
+          <div className="row inputStep1Row3 inputStep1Row1 mt-4">
+
+            <div className="col-lg-6 pl-0 pr-2">
+
+              {/* <select className="SelectionCountry" name="countryData" value={info2.countryData} onChange={onInputChanged}> */}
+              <select className="SelectionCountry" name="countryData" onChange={onInputChanged}>
+                <option selected hidden >Select car:</option>
+                <option value="1"  >Europe</option>
+                <option value="2" >United Kingdom</option>
+                <option value="3" >Other</option>
+
+              </select>
+              {errorData == 4 ? <div className="errorMessage"> Please select Country. </div> : ''}
+
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+        <br />
+        {/* <span style={{ color: "red" }}>{error}</span> */}
+
+      </FormGroup>
+
+
+
+      <ActionButtons {...props} nextStep={validate2} />
+    </div>
+  );
+};
+
+const Three = (props) => {
+  console.log("step3 receive user object");
+  console.log(props.user);
+
+
+  // const [info2, setInfo2] = useState({});
+  const [info3, setInfo3] = useState({});
+  const [error, setError] = useState("");
+  const [errorData, setErrorData] = useState("0");
+
+  const onInputChanged = (event) => {
+    const targetName = event.target.name;
+    const targetValue = event.target.value;
+    console.log("event", targetName, targetValue)
+
+    if (targetName === "pleaseCheckbox") {
+      const targetValue1 = event.target.checked;
+      setInfo3((info3) => ({
+        ...info3,
+        [targetName]: targetValue1
+      }));
+    }
+    else {
+      setInfo3((info3) => ({
+        ...info3,
         [targetName]: targetValue
       }));
-    };
-  
-    const validate = () => {
-      if (!info1.name) setError("Name is mandatory field");
-      else {
-        setError("");
-        props.nextStep();
-        props.userCallback(info1);
-      }
-    };
-  
-    return (
-      <div>
-        <span style={{ color: "red" }}>{error}</span>
-        <h1>This is step 1 content</h1>
-        <FormGroup>
-          <Label>Name: </Label>
-          <Input
-            type="text"
-            name="name"
-            placeholder="Enter your name"
-            onChange={onInputChanged}
-          />
-        </FormGroup>
-        <br />
-        <ActionButtons {...props} nextStep={validate} />
-      </div>
-    );
+    }
   };
-  
-  const Two = (props) => {
-    const [info2, setInfo2] = useState({});
-    const [error, setError] = useState("");
-  
-    const onInputChanged = (event) => {
-      const targetName = event.target.name;
-      const targetValue = event.target.value;
-  
-      setInfo2((info2) => ({
-        ...info2,
-        [targetName]: targetValue
-      }));
-    };
-  
-    const validate2 = () => {
-      if (!info2.age) setError("Age is mandatory field");
-      else {
-        setError("");
-        props.nextStep();
-        props.userCallback(info2);
-      }
-    };
-  
-    return (
-      <div>
-        <span style={{ color: "red" }}>{error}</span>
-        <h1>This is step 2 content</h1>
-        <FormGroup>
-          <Label>
-            Welcome <b>{props.user.name || ""}</b>
-          </Label>
-        </FormGroup>
-        <FormGroup>
-          <Label>Age: </Label>
-          <Input
-            type="text"
-            name="age"
-            placeholder="Enter your age"
-            onChange={onInputChanged}
-          />
-        </FormGroup>
-        <br />
-        <ActionButtons {...props} nextStep={validate2} />
-      </div>
-    );
-  };
-  
-  const Three = (props) => {
-    console.log("step3 receive user object");
-    console.log(props.user);
-  
-    const handleLastStep = () => {
+
+
+
+  const handleLastStep = () => {
+
+
+    console.log("object", info3.message)
+
+    if (!info3.message) setErrorData(1);
+    else if (!info3.pleaseCheckbox) setErrorData(2);
+    else {
+      setErrorData("");
       props.lastStep();
       props.completeCallback();
-    };
-  
-    return (
-      <div>
-        <h2>Summary user detail</h2>
-        <p>Name: {props.user.name}</p>
-        <p>Age: {props.user.age}</p>
-        <br />
-        <ActionButtons {...props} lastStep={handleLastStep} />
-      </div>
-    );
+      console.log("Finish")
+    }
+
   };
-  
+
+  return (
+    <div>
+
+      <div className="row">
+
+        <div className="col-lg-5 bg-danger d-flex align-items-center "><h3>Step 3/3</h3></div>
+
+        <div className="col-lg-7 bg-danger d-flex align-items-center justify-content-center">
+
+          <div class="progress progressStep3 ">
+            <div class="progress-value" ></div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <FormGroup>
 
 
+        <div className="container">
+
+          <div className="row mt-2 ">
+
+            <h3 className="" >Send an optional message</h3>
+
+
+          </div>
+
+
+          <div className="row inputStep1Row1 mt-0">
+
+            <div className="col-lg-12 pl-0 pr-2">
+
+              {/* <Label>Name: </Label> */}
+              {/* <input type="text" name="name" onChange={onInputChanged} placeholder="Enter your name" /> */}
+              {/* <input  type="text" name="address" onChange={onInputChanged} placeholder="Address" /> */}
+
+
+              <textarea className="Step3CommonInput" id="Step3CommonInput" name="message" onChange={onInputChanged} value={info3.message} rows="4" cols="50" placeholder="Write your message here!">
+              </textarea>
+              {errorData == 1 ? <div className="errorMessage"> Please select Message. </div> : ''}
+
+            </div>
+
+
+
+            <div className="row">
+
+              <div className="col-lg-12">
+
+                <input className='CheckboxInput mx-0 ' type="checkbox" id="featured-6" name="pleaseCheckbox" onChange={onInputChanged} value={"checkboxsufian"} />
+                <label className='Checkboxlabel mt-4' for="featured-6" > <span className='PleaseAcceptCheckbox ml-3' > Please Accept <span className='termsAndConditionsCheckbox'> terms and conditions </span> ? </span></label>
+
+                {errorData == 2 ? <div className="errorMessage"> Please Allow Permission. </div> : ''}
+
+              </div>
+
+            </div>
+
+
+
+          </div>
+
+
+
+
+
+        </div>
+
+        <br />
+        <span style={{ color: "red" }}>{error}</span>
+
+      </FormGroup>
+
+
+      {/* <p>Name: {props.user.name}</p>
+      <p>Age: {props.user.age}</p> */}
+
+      <ActionButtons {...props} lastStep={handleLastStep} />
+    </div>
+  );
+};
 
 const AllSteps = () => {
 
-    const [stepWizard, setStepWizard] = useState(null);
+  const [stepWizard, setStepWizard] = useState(null);
   const [user, setUser] = useState({});
   const [activeStep, setActiveStep] = useState(0);
 
@@ -184,22 +472,56 @@ const AllSteps = () => {
 
   return (
     <>
-    
 
+      
 
-    <Stepper activeStep={activeStep}>
-        <Step label="Step 1" children={<MdDescription />} />
-        <Step label="Personal Detail" />
-        <Step label="Confirmation" />
-      </Stepper>
-      {/* NOTE: IMPORTANT !! StepWizard must contains at least 2 children components, else got error */}
-      <StepWizard instance={assignStepWizard} onStepChange={handleStepChange}>
-        <One userCallback={assignUser} />
-        <Two user={user} userCallback={assignUser} />
-        <Three user={user} completeCallback={handleComplete} />
-      </StepWizard>
-    
-    
+        <div className=" fullBody   container  bg-white shadow ">
+
+          <div className="row1st row d-flex align-item-center justify-content-center">
+
+            <div className=" column1st col-lg-5 ">
+
+              <div className="rowinrow1st row">
+
+                <div className="rowinrow1stcolumn1st col-lg-9  m-0 p-0">
+
+                  <img src="https://icon-library.com/images/web-dev-icon/web-dev-icon-19.jpg" alt="" />
+                  <h2 className="text-light" >GIVE AWAY</h2>
+                  <p className="text-justify px-4 text-light">Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+                  <i className=" iconFontRow fa fa-info-circle d-flex align-item-start ml-4 mb-3 text-light " aria-hidden="true"></i>
+                </div>
+
+                <div className="rowinrow1stcolumn2nd col-lg-3  m-0 p-0">
+
+                  <Stepper activeStep={activeStep}>
+                    <Step label="Step 1" />
+                    <Step label="Personal Detail" />
+                    <Step label="Confirmation" />
+                  </Stepper>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div className="column2nd col-lg-7">
+
+              {/* NOTE: IMPORTANT !! StepWizard must contains at least 2 children components, else got error */}
+              <StepWizard instance={assignStepWizard} onStepChange={handleStepChange}>
+                <One userCallback={assignUser} />
+                <Two user={user} userCallback={assignUser} />
+                <Three user={user} completeCallback={handleComplete} />
+              </StepWizard>
+
+            </div>
+
+          </div>
+
+        </div>
+
+     
+
     </>
   )
 }

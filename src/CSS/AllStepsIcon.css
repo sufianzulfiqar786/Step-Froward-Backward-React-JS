@@ -1,0 +1,80 @@
+#RFS-Connector,  #RFS-Label{
+    display: none;
+}
+
+/* Responsive */
+
+
+#RFS-StepperContainer{
+    display: flex;
+    flex-direction: column;
+    /* background-color: red; */
+}
+
+#RFS-StepContainer{
+    margin-top: 45px;
+    
+}
+
+
+
+#RFS-StepButton.active {
+    border: solid .2em #6C3;
+    padding: .2em;
+    background: #6C3 content-box;
+    width: 4em;
+    height: 4em;
+    /* font:  1.0em/3 comic sans ms, verdana, sans serif; */
+  }
+  
+  #RFS-StepButton.active::after {
+    content: '';
+    width: 5px;
+    height: 60px;
+    background-color: #6C3;
+    z-index: -1;
+    position: absolute;
+  }
+  
+  #RFS-StepButton.completed {
+    border: solid .2em rgb(60, 121, 30);
+    padding: .2em;
+    background: rgb(60, 121, 30) content-box;
+    width: 4em;
+    height: 4em;
+    /* font: 200 1.5em/3 comic sans ms, verdana, sans serif; */
+  
+  }
+  
+  #RFS-StepButton.completed::after {
+    content: '';
+    width: 5px;
+    height: 130px;
+    background-color: rgb(60, 121, 30);
+    z-index: -1;
+    position: absolute;
+    margin-top: 120px;
+  }
+
+  #RFS-StepButton {
+    /* margin-left: -328px; */
+    /* margin-top: 44px; */
+    background-color: rgba(0, 0, 0, 0.534);
+    width: 4em;
+    height: 4em;
+    /* font-size: 27px; */
+    /* margin-bottom: 43px; */
+    z-index: 4;
+  }
+
+  .rowinrow1stcolumn2nd::after{
+    content: '';
+  width: 5px;
+  height: 266px;
+  /* height: 202px; */
+  background-color: rgba(0, 0, 0, 0.534);
+  z-index:0;
+  position: absolute;
+  margin-top: -290px;
+  margin-left: 61.5px;
+  }

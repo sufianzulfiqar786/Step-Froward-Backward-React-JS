@@ -1,0 +1,80 @@
+.Step1CommonInput {
+    width: 100%;
+    background-color: white;
+
+    color: black;
+    height: 50px;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: rgba(0, 0, 0, 0.226);
+    outline: none;
+}
+
+.Step1CommonInput::placeholder {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.397);
+}
+
+.Step1CommonInput:focus {
+    /* background-color: red; */
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+.Step1CommonRatio {
+    width: 22px;
+
+}
+
+.Step1CommonRatio:checked {
+    width: 22px;
+    accent-color: green;
+    /* accent-color: rgb(0, 255, 0); */
+}
+
+.SelectionCountry {
+    background-color: white;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: rgba(0, 0, 0, 0.226);
+    height: 35px;
+    width: 160px;
+    color: black;
+}
+
+.SelectionCountry:focus{
+    /* border-bottom: 2px solid rgb(0, 0, 0); */
+
+}
+
+
+.Step3CommonInput {
+    width: 100%;
+    background-color: white;
+
+    color: black;
+    height: 140px;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: rgba(0, 0, 0, 0.226);
+    outline: none;
+}
+
+.Step3CommonInput::placeholder {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.397);
+    margin-top: 30px;
+}
+
+.Step3CommonInput:focus {
+    /* background-color: red; */
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
