@@ -86,9 +86,9 @@ const One = (props) => {
 
       <div className="row">
 
-        <div className="col-lg-5 bg-danger d-flex align-items-center "><h3>Step 1/3</h3></div>
+        <div className="col-lg-5 d-flex align-items-center "><h3>Step 1/3</h3></div>
 
-        <div className="col-lg-7 bg-danger d-flex align-items-center justify-content-center">
+        <div className="col-lg-7  d-flex align-items-center justify-content-center">
 
           <div class="progress progressStep1 ">
             <div class="progress-value" ></div>
@@ -102,7 +102,7 @@ const One = (props) => {
 
         <div className="container">
 
-          <div className="row mt-2 ">
+          <div className="row mt-lg-2 ">
 
             <h3 className="" >Please fill with your details</h3>
 
@@ -110,13 +110,13 @@ const One = (props) => {
 
           <div className="row inputStep1Row1 mt-0">
 
-            <div className="col-lg-6 pl-0 pr-2">
+            <div className="col-lg-6 pl-lg-0 pr-lg-2">
 
               <input className="Step1CommonInput" type="text" name="firstname" onChange={onInputChanged} placeholder="First name" />
               {errorData == 1 ? <div className="errorMessage"> Please enter First name. </div> : ''}
             </div>
 
-            <div className="col-lg-6  pl-2 pr-0">
+            <div className="col-lg-6  pl-lg-2 pr-lg-0">
 
               <input className="Step1CommonInput" type="text" name="lastname" onChange={onInputChanged} placeholder="Last name" />
               {errorData == 2 ? <div className="errorMessage">Please enter Last name.</div> : ''}
@@ -124,16 +124,16 @@ const One = (props) => {
 
           </div>
 
-          <div className="row inputStep1Row2 inputStep1Row1 mt-4">
+          <div className="row inputStep1Row2 inputStep1Row1 mt-lg-4">
 
-            <div className="col-lg-6 pl-0 pr-2">
+            <div className="col-lg-6 pl-lg-0 pr-lg-2">
 
               <input className="Step1CommonInput" type="Email" name="email" onChange={onInputChanged} placeholder="Email" />
               {errorData == 3 ? <div className="errorMessage">Please enter Email.</div> : ''}
 
             </div>
 
-            <div className="col-lg-6 pl-2 pr-0">
+            <div className="col-lg-6 pl-lg-2 pr-lg-0">
 
               <input className="Step1CommonInput" type="Phone" name="phone" onChange={onInputChanged} placeholder="Telephone" />
               {errorData == 4 ? <div className="errorMessage">Please enter Telephone.</div> : ''}
@@ -141,21 +141,21 @@ const One = (props) => {
 
           </div>
 
-          <div className="row inputStep1Row3 inputStep1Row1 mt-4">
+          <div className="row inputStep1Row3 inputStep1Row1 mt-lg-4">
 
-            <div className="col-lg-6 pl-0 pr-2">
+            <div className="col-lg-6 p-lg-0 pr-lg-2">
 
               <input className="Step1CommonInput" type="number" name="age" onChange={onInputChanged} placeholder="Age" />
               {errorData == 5 ? <div className="errorMessage">Please enter Age.</div> : ''}
             </div>
 
-            <div className="col-lg-6 pl-2 pr-0">
+            <div className="col-lg-6 pl-lg-2 pr-lg-0">
 
               <div className="row Step1Row3Common2Ratio">
 
 
 
-                <p className="ratioButton">
+                <p className="ratioButton mt-md-4 ">
                   <input type="radio" id="featured-1" name="fav_language" onChange={onInputChanged} value="Male" />
                   <label className="ratioButtonLabel" for="featured-1"><p className="ml-3 mt-1">Male</p></label>
 
@@ -216,9 +216,9 @@ const Two = (props) => {
 
       <div className="row">
 
-        <div className="col-lg-5 bg-danger d-flex align-items-center "><h3>Step 2/3</h3></div>
+        <div className="col-lg-5  d-flex align-items-center "><h3>Step 2/3</h3></div>
 
-        <div className="col-lg-7 bg-danger d-flex align-items-center justify-content-center">
+        <div className="col-lg-7  d-flex align-items-center justify-content-center">
 
           <div class="progress progressStep2 ">
             <div class="progress-value" ></div>
@@ -243,7 +243,7 @@ const Two = (props) => {
 
           <div className="row inputStep1Row1 mt-0">
 
-            <div className="col-lg-12 pl-0 pr-2">
+            <div className="col-lg-12 pl-lg-0 pr-lg-2">
 
               {/* <Label>Name: </Label> */}
               {/* <input type="text" name="name" onChange={onInputChanged} placeholder="Enter your name" /> */}
@@ -256,16 +256,16 @@ const Two = (props) => {
 
           </div>
 
-          <div className="row inputStep1Row2 inputStep1Row1 mt-4">
+          <div className="row inputStep1Row2 inputStep1Row1 mt-lg-4">
 
-            <div className="col-lg-6 pl-0 pr-2">
+            <div className="col-lg-6 pl-lg-0 pr-lg-2">
 
               <input className="Step1CommonInput" type="Email" name="city" onChange={onInputChanged} placeholder="City" />
               {errorData == 2 ? <div className="errorMessage"> Please enter City. </div> : ''}
 
             </div>
 
-            <div className="col-lg-6 pl-2 pr-0">
+            <div className="col-lg-6 pl-lg-2 pr-lg-0">
 
               <input className="Step1CommonInput" type="Phone" name="postcode" onChange={onInputChanged} placeholder="Postcode" />
               {errorData == 3 ? <div className="errorMessage"> Please enter Postcode. </div> : ''}
@@ -276,7 +276,7 @@ const Two = (props) => {
 
           <div className="row inputStep1Row3 inputStep1Row1 mt-4">
 
-            <div className="col-lg-6 pl-0 pr-2">
+            <div className="col-lg-6 pl-lg-0 pr-lg-2">
 
               {/* <select className="SelectionCountry" name="countryData" value={info2.countryData} onChange={onInputChanged}> */}
               <select className="SelectionCountry" name="countryData" onChange={onInputChanged}>
@@ -361,9 +361,9 @@ const Three = (props) => {
 
       <div className="row">
 
-        <div className="col-lg-5 bg-danger d-flex align-items-center "><h3>Step 3/3</h3></div>
+        <div className="col-lg-5 d-flex align-items-center "><h3>Step 3/3</h3></div>
 
-        <div className="col-lg-7 bg-danger d-flex align-items-center justify-content-center">
+        <div className="col-lg-7 d-flex align-items-center justify-content-center">
 
           <div class="progress progressStep3 ">
             <div class="progress-value" ></div>
@@ -473,54 +473,64 @@ const AllSteps = () => {
   return (
     <>
 
-      
 
-        <div className=" fullBody   container  bg-white shadow ">
 
-          <div className="row1st row d-flex align-item-center justify-content-center">
+      <div className=" fullBody   container  bg-white shadow">
 
-            <div className=" column1st col-lg-5 ">
+        <div className="row1st row d-flex align-item-center justify-content-center">
 
-              <div className="rowinrow1st row">
+          <div className=" column1st  col-lg-5 ">
 
-                <div className="rowinrow1stcolumn1st col-lg-9  m-0 p-0">
+            <div className="rowinrow1st row">
 
-                  <img src="https://icon-library.com/images/web-dev-icon/web-dev-icon-19.jpg" alt="" />
-                  <h2 className="text-light" >GIVE AWAY</h2>
-                  <p className="text-justify px-4 text-light">Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
-                  <i className=" iconFontRow fa fa-info-circle d-flex align-item-start ml-4 mb-3 text-light " aria-hidden="true"></i>
-                </div>
+              <div className="rowinrow1stcolumn1st col-lg-9  m-0 p-0">
 
-                <div className="rowinrow1stcolumn2nd col-lg-3  m-0 p-0">
+                <div className="row m-0 p-0">
 
-                  <Stepper activeStep={activeStep}>
-                    <Step label="Step 1" />
-                    <Step label="Personal Detail" />
-                    <Step label="Confirmation" />
-                  </Stepper>
+                  <div className=" imgColumn col-lg-12 col-md-6 pt-md-4 ">
+                    <img src="https://icon-library.com/images/web-dev-icon/web-dev-icon-19.jpg" alt="" />
+                  </div>
+
+                  <div className=" detailColumn col-lg-12 col-md-6 pt-md-4">
+                    <h2 className="text-light" >GIVE AWAY</h2>
+                    <p className="text-justify px-md-4 px-lg-4 text-light">Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+                    <i className=" iconFontRow fa fa-info-circle d-flex align-item-start ml-lg-4 ml-md-4 mb-lg-3 mb-md-3 text-light " aria-hidden="true"></i>
+                  </div>
 
                 </div>
 
               </div>
 
-            </div>
+              <div className="rowinrow1stcolumn2nd col-lg-3   m-0 p-0">
 
-            <div className="column2nd col-lg-7">
+                <Stepper activeStep={activeStep}>
+                  <Step label="Step 1" />
+                  <Step label="Personal Detail" />
+                  <Step label="Confirmation" />
+                </Stepper>
 
-              {/* NOTE: IMPORTANT !! StepWizard must contains at least 2 children components, else got error */}
-              <StepWizard instance={assignStepWizard} onStepChange={handleStepChange}>
-                <One userCallback={assignUser} />
-                <Two user={user} userCallback={assignUser} />
-                <Three user={user} completeCallback={handleComplete} />
-              </StepWizard>
+              </div>
 
             </div>
 
           </div>
 
+          <div className="column2nd col-lg-7">
+
+            {/* NOTE: IMPORTANT !! StepWizard must contains at least 2 children components, else got error */}
+            <StepWizard instance={assignStepWizard} onStepChange={handleStepChange}>
+              <One userCallback={assignUser} />
+              <Two user={user} userCallback={assignUser} />
+              <Three user={user} completeCallback={handleComplete} />
+            </StepWizard>
+
+          </div>
+
         </div>
 
-     
+      </div>
+
+
 
     </>
   )
