@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import '../CSS/Extra.css'
+import '../CSS/SuccessMessage.css'
 
 
-const Extra = () => {
+const SuccessMessage = () => {
 
   let navigateAfter5mint = useNavigate()
   useEffect(() => {
@@ -14,7 +14,7 @@ const Extra = () => {
   return (
     <>
 
-{/* 
+
       <div className="FullBodySucess">
 
         <div className="row">
@@ -37,7 +37,7 @@ const Extra = () => {
           </div>
 
 
-        </div> */}
+        </div>
 
 
 
@@ -46,7 +46,7 @@ const Extra = () => {
 
 
 
-      {/* </div> */}
+      </div>
 
 
 
@@ -54,4 +54,4 @@ const Extra = () => {
   )
 }
 
-export default Extra
+export default SuccessMessage

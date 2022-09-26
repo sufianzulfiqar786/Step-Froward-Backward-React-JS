@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
 import { MdDescription } from "react-icons/md";
 import StepWizard from "react-step-wizard";
-import { Row, Col, Button, FormGroup, Label, Input } from "reactstrap";
+import { Row, Col, Button, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import {Routes, Route, useNavigate, useHistory} from 'react-router-dom';
+import Extra from '../Pages/Extra'
+
 import '../CSS/AllSteps.css'
 import '../CSS/AllStepsIcon.css'
 import '../CSS/Stepone.css'
@@ -281,9 +284,9 @@ const Two = (props) => {
               {/* <select className="SelectionCountry" name="countryData" value={info2.countryData} onChange={onInputChanged}> */}
               <select className="SelectionCountry" name="countryData" onChange={onInputChanged}>
                 <option selected hidden >Select car:</option>
-                <option value="1"  >Europe</option>
-                <option value="2" >United Kingdom</option>
-                <option value="3" >Other</option>
+                <option value="Europe"  >Europe</option>
+                <option value="United Kingdom" >United Kingdom</option>
+                <option value="Other" >Other</option>
 
               </select>
               {errorData == 4 ? <div className="errorMessage"> Please select Country. </div> : ''}
@@ -308,7 +311,7 @@ const Two = (props) => {
   );
 };
 
-const Three = (props) => {
+const Three = (props, args) => {
   console.log("step3 receive user object");
   console.log(props.user);
 
@@ -351,12 +354,22 @@ const Three = (props) => {
       setErrorData("");
       props.lastStep();
       props.completeCallback();
+      props.userCallback(info3);
       console.log("Finish")
     }
 
   };
 
+  const [modal, setModal] = useState(false);
+  
+  const toggle = () => setModal(!modal);
+
+console.log(info3.message)
+
+console.log(info3.pleaseCheckbox)
+
   return (
+    
     <div>
 
       <div className="row">
@@ -372,6 +385,8 @@ const Three = (props) => {
         </div>
 
       </div>
+
+      
 
       <FormGroup>
 
@@ -407,8 +422,20 @@ const Three = (props) => {
 
               <div className="col-lg-12">
 
-                <input className='CheckboxInput mx-0 ' type="checkbox" id="featured-6" name="pleaseCheckbox" onChange={onInputChanged} value={"checkboxsufian"} />
-                <label className='Checkboxlabel mt-4' for="featured-6" > <span className='PleaseAcceptCheckbox ml-3' > Please Accept <span className='termsAndConditionsCheckbox'> terms and conditions </span> ? </span></label>
+                <div className="row mt-3 mb-2 ">
+
+                  <div className="col-2 ">
+
+
+                    <input className='CheckboxInput mx-0 ' type="checkbox" id="featured-6" name="pleaseCheckbox" onChange={onInputChanged} value={info3.pleaseCheckbox} />
+                    <label className='Checkboxlabel mb-3 mr-0' for="featured-6" > </label>
+                  </div>
+
+                  <div className="col-10  pl-0 pr-0">
+                    <span className='PleaseAcceptCheckbox  ' > Please Accept <span className='termsAndConditionsCheckbox' onClick={toggle}> terms and conditions </span> ? </span>
+                  </div>
+
+                </div>
 
                 {errorData == 2 ? <div className="errorMessage"> Please Allow Permission. </div> : ''}
 
@@ -431,6 +458,37 @@ const Three = (props) => {
 
       </FormGroup>
 
+      <Modal isOpen={modal} toggle={toggle} {...args}>
+
+          <ModalHeader toggle={toggle}>Review:</ModalHeader>
+          
+          <ModalBody>
+
+          <b>First Name:</b> <p>{props.user.firstname || ""}</p><br/>
+          <b>Last Name:</b> <p>{props.user.lastname || ""}</p><br/>
+          <b>Email:</b> <p>{props.user.email || ""}</p><br/>
+          <b>Telephone:</b> <p>{props.user.phone || ""}</p><br/>
+          <b>Age:</b> <p>{props.user.age || ""}</p><br/>
+          <b>Gender:</b> <p>{props.user.fav_language || ""}</p><br/>
+          <b>Address:</b> <p>{props.user.address || ""}</p><br/>
+          <b>City:</b> <p>{props.user.city || ""}</p><br/>
+          <b>Postcode:</b> <p>{props.user.postcode || ""}</p><br/>
+          <b>Country:</b> <p>{props.user.countryData || ""}</p><br/>
+
+          <b>Message:</b> <p>{props.user.message || ""}</p><br/>
+          <b>Accept terms & conditions:</b> <p>{props.user.pleaseCheckbox == true ? "Yes" : "No" }</p><br/>
+         
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={toggle}>
+              Privacy & Policy
+            </Button>{' '}
+            <Button color="secondary" onClick={toggle}>
+              Close
+            </Button>
+          </ModalFooter>
+        </Modal>
+
 
       {/* <p>Name: {props.user.name}</p>
       <p>Age: {props.user.age}</p> */}
@@ -445,6 +503,8 @@ const AllSteps = () => {
   const [stepWizard, setStepWizard] = useState(null);
   const [user, setUser] = useState({});
   const [activeStep, setActiveStep] = useState(0);
+// let history = useHistory();
+let navigate = useNavigate()
 
   const assignStepWizard = (instance) => {
     setStepWizard(instance);
@@ -452,7 +512,7 @@ const AllSteps = () => {
 
   const assignUser = (val) => {
     console.log("parent receive user callback");
-    console.log(val);
+    console.log("val",val);
     setUser((user) => ({
       ...user,
       ...val
@@ -466,8 +526,13 @@ const AllSteps = () => {
   };
 
   const handleComplete = () => {
-    alert("You r done. TQ");
+    // alert("You r done. TQ");
+    // history.push("/Extra");
+    navigate("/Extra")
   };
+
+
+  
 
 
   return (
@@ -521,7 +586,7 @@ const AllSteps = () => {
             <StepWizard instance={assignStepWizard} onStepChange={handleStepChange}>
               <One userCallback={assignUser} />
               <Two user={user} userCallback={assignUser} />
-              <Three user={user} completeCallback={handleComplete} />
+              <Three user={user} completeCallback={handleComplete} userCallback={assignUser}  />
             </StepWizard>
 
           </div>
