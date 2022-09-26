@@ -1,56 +1,58 @@
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import '../CSS/Extra.css'
+import React from 'react'
+import axios from 'axios';
+
+
 
 
 const Extra = () => {
 
-  let navigateAfter5mint = useNavigate()
-  useEffect(() => {
-    setTimeout(() => {
-      navigateAfter5mint("/")
-    }, 5000);
-  })
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    const checkMe = event.target.checkMe.value;
+
+    const data = { email, password, checkMe };
+    const responsr =axios
+        .post('https://jsonplaceholder.typicode.com/posts', data)
+        .then((response) => {
+          console.log(response);
+          // event.target.reset();
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+  }
+
+
   return (
-    <>
-
-{/* 
-      <div className="FullBodySucess">
-
-        <div className="row">
-
-          <div className="col-12 mb-3 d-flex align-items-center justify-content-center">
-
-            <svg viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
-              <g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-                <path class="circle" d="M13 1C6.372583 1 1 6.372583 1 13s5.372583 12 12 12 12-5.372583 12-12S19.627417 1 13 1z" />
-                <path class="tick" d="M6.5 13.5L10 17 l8.808621-8.308621" />
-              </g>
-            </svg>
-
-          </div>
-
-          <div className="col-12 d-flex align-items-center justify-content-center text-center">
-
-            <h1>Your are Successfully <br /> <h2>entered data</h2>  <h5>Redirect to main page in 5 Second</h5> </h1>
-
-          </div>
+    <div>
 
 
-        </div> */}
+      <form onSubmit={submitHandler}>
+        <div className="form-group">
+          <label htmlFor="exampleInputEmail1">Email address</label>
+          <input name='email' type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+          <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="exampleInputPassword1">Password</label>
+          <input name={'password'} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+        </div>
+
+        <div className="form-group form-check">
+          <input name='checkMe' type="checkbox" className="form-check-input" id="exampleCheck1" />
+          <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+        </div>
+
+        <button type="submit" className="btn btn-primary">Submit</button>
+      </form>
 
 
 
-
-
-
-
-
-      {/* </div> */}
-
-
-
-    </>
+    </div>
   )
 }
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import { Stepper, Step } from "react-form-stepper";
 import { MdDescription } from "react-icons/md";
 import StepWizard from "react-step-wizard";
@@ -312,8 +313,8 @@ const Two = (props) => {
 };
 
 const Three = (props, args) => {
-  console.log("step3 receive user object");
-  console.log(props.user);
+  // console.log("step3 receive user object");
+  // console.log(props.user);
 
 
   // const [info2, setInfo2] = useState({});
@@ -324,7 +325,7 @@ const Three = (props, args) => {
   const onInputChanged = (event) => {
     const targetName = event.target.name;
     const targetValue = event.target.value;
-    console.log("event", targetName, targetValue)
+    // console.log("event", targetName, targetValue)
 
     if (targetName === "pleaseCheckbox") {
       const targetValue1 = event.target.checked;
@@ -346,7 +347,7 @@ const Three = (props, args) => {
   const handleLastStep = () => {
 
 
-    console.log("object", info3.message)
+    // console.log("object", info3.message)
 
     if (!info3.message) setErrorData(1);
     else if (!info3.pleaseCheckbox) setErrorData(2);
@@ -355,7 +356,7 @@ const Three = (props, args) => {
       props.lastStep();
       props.completeCallback();
       props.userCallback(info3);
-      console.log("Finish")
+      // console.log("Finish")
     }
 
   };
@@ -364,9 +365,9 @@ const Three = (props, args) => {
   
   const toggle = () => setModal(!modal);
 
-console.log(info3.message)
+// console.log(info3.message)
 
-console.log(info3.pleaseCheckbox)
+// console.log(info3.pleaseCheckbox)
 
   return (
     
@@ -511,8 +512,8 @@ let navigate = useNavigate()
   };
 
   const assignUser = (val) => {
-    console.log("parent receive user callback");
-    console.log("val",val);
+    // console.log("parent receive user callback");
+    // console.log("val",val);
     setUser((user) => ({
       ...user,
       ...val
@@ -520,16 +521,47 @@ let navigate = useNavigate()
   };
 
   const handleStepChange = (e) => {
-    console.log("step change");
-    console.log(e);
+    // console.log("step change");
+    // console.log(e);
     setActiveStep(e.activeStep - 1);
   };
 
-  const handleComplete = () => {
+  const handleComplete = (event) => {
     // alert("You r done. TQ");
     // history.push("/Extra");
     navigate("/Extra")
+
+    // event.preventDefault();
+    // console.log(user)
+
+    const FirstName = user.firstname;
+    const LastName = user.lastname;
+    const Email = user.email;
+    const Phone = user.phone;
+    const Age = user.age;
+    const Gender = user.fav_language;
+    const Address = user.address;
+    const City = user.city;
+    const Postcode = user.postcode;
+    const CountryData = user.countryData;
+    const Message = user.message;
+    const AcceptTermsAndCondition = user.pleaseCheckbox;
+
+
+    const data = {FirstName, LastName, Email, Phone, Age, Gender, Address, City, Postcode,CountryData,Message,AcceptTermsAndCondition };
+    const responsr =axios
+        .post('https://jsonplaceholder.typicode.com/posts', data)
+        .then((response) => {
+          console.log(response);
+          // event.target.reset();
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+
   };
+
+
 
 
   
